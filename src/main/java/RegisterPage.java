@@ -10,7 +10,7 @@ import java.util.List;
 public class RegisterPage {
     private WebDriver driver;
     private final String inputFields = ".//input";
-    private final String invalidPasswordText = ".//p[text()='Некорректный пароль']";
+    private final By invalidPasswordText = By.xpath(".//p[text()='Некорректный пароль']");
     private final By registerButton = By.xpath(".//button[text()='Зарегистрироваться']");
     Urls urls = new Urls();
     public RegisterPage() {
@@ -38,13 +38,18 @@ public class RegisterPage {
                 .until(ExpectedConditions.elementToBeClickable(registerButton));
         driver.findElement(registerButton).click();
     }
-    public String checkInvalidPasswordText(){
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.elementToBeClickable(registerButton));
-        driver.findElement(registerButton).click();
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(invalidPasswordText)));
-        WebElement invalidPassword = driver.findElement(By.xpath(invalidPasswordText));
-        return invalidPassword.getText();
+    public boolean checkInvalidPasswordText(){
+        boolean actual = false;
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(2))
+                .until(ExpectedConditions.visibilityOfElementLocated(invalidPasswordText));
+            if (driver.findElement(invalidPasswordText).getText().equals("Некорректный пароль")){
+            actual =  true;}
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+            }
+        finally {
+            return actual;
+        }
     }
 }

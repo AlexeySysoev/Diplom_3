@@ -31,25 +31,29 @@ public class RegisterWrongPasswordTest {
         }
     @Parameterized.Parameter(0)
     public String password;
-    @Parameterized.Parameters(name = "password: {0}")
+    @Parameterized.Parameter(1)
+    public boolean result;
+    @Parameterized.Parameters(name = "password: {0}, result: {1}")
     public static Object [][] wrongPass(){
         return new Object[][]{
-                {""},
-                {RandomStringUtils.randomAlphanumeric(1)},
-                {RandomStringUtils.randomAlphanumeric(2)},
-                {RandomStringUtils.randomAlphanumeric(3)},
-                {RandomStringUtils.randomAlphanumeric(4)},
-                {RandomStringUtils.randomAlphanumeric(5)},
+                {"", true},
+                {RandomStringUtils.randomAlphanumeric(1), true},
+                {RandomStringUtils.randomAlphanumeric(2), true},
+                {RandomStringUtils.randomAlphanumeric(3), true},
+                {RandomStringUtils.randomAlphanumeric(4), true},
+                {RandomStringUtils.randomAlphanumeric(5), true},
+                {RandomStringUtils.randomAlphanumeric(6), false}
         };
     }
         @Test
         //Проверка успешной регистрации с корректными данными
+        //Баг - сообщение об ошибке не появляется, если не вводить пароль
         public void enteringWrongPasswordReturnErrorMessage(){
             user.add("Алексей");
-            user.add("lovewrongpass@yandex.ru");
+            user.add(RandomStringUtils.randomAlphabetic(10).toLowerCase()+"@yandex.ru");
             user.add(password);
             registerPage.registerUser(user);
-            Assert.assertEquals("Некорректный пароль", registerPage.checkInvalidPasswordText());
+            Assert.assertEquals("Empty - must be Error message!!!",result, registerPage.checkInvalidPasswordText());
            }
         @After
         public void teardown(){
