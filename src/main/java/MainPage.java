@@ -1,10 +1,39 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class MainPage {
     private WebDriver driver;
-    private By personalAccountLink = By.xpath(".//a[@href = '/account']");
-    private By enterAccountButton = By.xpath(".//button[text()='Войти в аккаунт']");
-    private By mainLogo = By.xpath(".//a[@href='/' and @class='active']");
-    private By constructorButton = By.xpath(".//p[text()='Конструктор']/parent::a");
+    Urls urls = new Urls();
+    private final By personalAccountLink = By.xpath(".//a[@href = '/account']");
+    private final By enterAccountButton = By.xpath(".//button[text()='Войти в аккаунт']");
+    private final By mainLogo = By.xpath(".//a[@href='/' and @class='active']");
+    private final By constructorButton = By.xpath(".//p[text()='Конструктор']/parent::a");
+    private final By bunTab = By.xpath(".//span[text()='Булки']");
+    private final By sauceTab = By.xpath(".//span[text()='Соусы']");
+    private final By fillingTab = By.xpath(".//span[text()='Начинки']");
+
+    public MainPage(){}
+//    public MainPage(WebDriver driver) {
+//        this.driver = driver;
+//    }
+    public void setDriver(WebDriver driver){
+        this.driver = driver;
+    }
+    public void open(){
+        driver.get(urls.baseUrl);
+    }
+    public void personalAccountLinkClick(){
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(personalAccountLink));
+        driver.findElement(personalAccountLink).click();
+    }
+    public void enterAccountButtonClick(){
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(enterAccountButton));
+        driver.findElement(enterAccountButton).click();
+    }
 }
