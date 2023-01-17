@@ -1,4 +1,5 @@
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -7,8 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfilePageTransitionTest {
+public class TransitionFromProfilePageTest {
     private WebDriver driver;
+    Urls urls = new Urls();
     List<String> user = new ArrayList<>();
     MainPage mainPage = new MainPage();
     RegisterPage registerPage = new RegisterPage();
@@ -28,23 +30,23 @@ public class ProfilePageTransitionTest {
         profilePage.setDriver(driver);
     }
     @Test
-    public void profilePageTransitionWithLogin(){
-        //создать юзера
+    //Проверка перехода из ЛК к конструктору
+    public void constructorButtonClickFromProfilePageOnConstructorIsSuccess(){
         registerPage.registerUser(user);
-        //залогиниться
         loginPage.loginUser(user.get(1), user.get(2));
-        //перейти в лк с разных точек??
-
+        mainPage.personalAccountLinkClick();
+        mainPage.constructorButtonClick();
+        Assert.assertTrue(driver.findElement(mainPage.fluoBun).isDisplayed()
+                                && driver.getCurrentUrl().equals(urls.baseUrl));
     }
     @Test
-    public void profilePageTransitionWithoutLogin(){
-       //создать юзера
+    //Проверка перехода из ЛК к конструктору
+    public void logoClickFromProfilePageOnConstructorIsSuccess(){
         registerPage.registerUser(user);
-       //пробовать перейти в лк с разных точек
+        loginPage.loginUser(user.get(1), user.get(2));
+        mainPage.personalAccountLinkClick();
+        mainPage.logoClick();
+        Assert.assertTrue(driver.findElement(mainPage.fluoBun).isDisplayed()
+                && driver.getCurrentUrl().equals(urls.baseUrl));
     }
-    @Test
-    public void profilePageTransitionWithoutCreateUser(){
-       //пробовать перейти в лк с разных точек
-    }
-
 }

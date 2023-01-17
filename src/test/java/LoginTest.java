@@ -11,6 +11,7 @@ import java.util.List;
 
 public class LoginTest {
     private WebDriver driver;
+    Urls urls = new Urls();
     List<String> user = new ArrayList<>();
     MainPage mainPage = new MainPage();
     RegisterPage registerPage = new RegisterPage();
@@ -75,6 +76,15 @@ public class LoginTest {
         mainPage.personalAccountLinkClick();
         //Проверяем успешный вход
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
+    }
+    @Test
+    public void logoutFromAccountIsDone(){
+        loginPage.loginUser(user.get(1), user.get(2));
+        mainPage.waitElement(mainPage.personalAccountLink);
+        mainPage.personalAccountLinkClick();
+        profilePage.logoutButtonClick();
+        mainPage.personalAccountLinkClick();
+        Assert.assertEquals(urls.baseUrl+urls.loginPoint, driver.getCurrentUrl());
     }
     @After
     public void teardown(){

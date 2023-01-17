@@ -8,9 +8,9 @@ import java.time.Duration;
 public class MainPage {
     private WebDriver driver;
     Urls urls = new Urls();
-    private final By personalAccountLink = By.xpath(".//a[@href = '/account']");
+    final By personalAccountLink = By.xpath(".//a[@href = '/account']");
     private final By enterAccountButton = By.xpath(".//button[text()='Войти в аккаунт']");
-    private final By mainLogo = By.xpath(".//a[@href='/' and @class='active']");
+    private final By mainLogo = By.xpath(".//div[contains(@class, 'logo')]/a[@href='/']");
     private final By constructorButton = By.xpath(".//p[text()='Конструктор']/parent::a");
     private final By bunTab = By.xpath(".//span[text()='Булки']");
     private final By sauceTab = By.xpath(".//span[text()='Соусы']");
@@ -37,5 +37,15 @@ public class MainPage {
     public void waitElement(By element){
         new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.elementToBeClickable(element));
+    }
+    public void constructorButtonClick(){
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(constructorButton));
+        driver.findElement(constructorButton).click();
+    }
+    public void logoClick(){
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(mainLogo));
+        driver.findElement(mainLogo).click();
     }
 }

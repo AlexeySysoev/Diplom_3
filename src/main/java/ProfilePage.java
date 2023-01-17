@@ -9,7 +9,8 @@ import java.time.Duration;
 public class ProfilePage {
     private WebDriver driver;
     Urls urls = new Urls();
-    private By saveButton = By.xpath(".//button[text()='Сохранить']");
+    private final By saveButton = By.xpath(".//button[text()='Сохранить']");
+    private final By logoutButton = By.xpath(".//button[text()='Выход']");
     public ProfilePage() {}
     public void setDriver(WebDriver driver){
         this.driver = driver;
@@ -17,10 +18,14 @@ public class ProfilePage {
     public String getUserLogin(String login){
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.urlContains(urls.profilePoint));
-        // driver.get(urls.baseUrl+urls.profilePoint);
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.elementToBeClickable(saveButton));
         WebElement elem = driver.findElement(By.xpath(".//input[@value='"+ login +"']"));
         return elem.getAttribute("value");
+    }
+    public void logoutButtonClick(){
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(logoutButton));
+        driver.findElement(logoutButton).click();
     }
 }

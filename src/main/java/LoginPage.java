@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class LoginPage {
@@ -21,7 +20,6 @@ public class LoginPage {
     public void loginUser(String email, String password){
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.urlContains(urls.loginPoint));
-        //        driver.get(urls.baseUrl + urls.loginPoint);
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.elementToBeClickable(emailInput));
         driver.findElement(emailInput).sendKeys(email);
@@ -44,4 +42,5 @@ public class LoginPage {
                 .until(ExpectedConditions.elementToBeClickable(forgotPasswordLink));
         driver.findElement(forgotPasswordLink).click();
     }
+
 }
