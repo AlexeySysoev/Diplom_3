@@ -36,7 +36,7 @@ public class TransitionFromProfilePageTest {
         loginPage.loginUser(user.get(1), user.get(2));
         mainPage.personalAccountLinkClick();
         mainPage.constructorButtonClick();
-        Assert.assertTrue(driver.findElement(mainPage.fluoBun).isDisplayed()
+        Assert.assertTrue(driver.findElement(mainPage.fluBun).isDisplayed()
                                 && driver.getCurrentUrl().equals(urls.baseUrl));
     }
     @Test
@@ -46,7 +46,7 @@ public class TransitionFromProfilePageTest {
         loginPage.loginUser(user.get(1), user.get(2));
         mainPage.personalAccountLinkClick();
         mainPage.logoClick();
-        Assert.assertTrue(driver.findElement(mainPage.fluoBun).isDisplayed()
+        Assert.assertTrue(driver.findElement(mainPage.fluBun).isDisplayed()
                 && driver.getCurrentUrl().equals(urls.baseUrl));
     }
 }

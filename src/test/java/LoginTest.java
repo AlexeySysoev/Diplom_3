@@ -48,7 +48,7 @@ public class LoginTest {
         mainPage.open();
         mainPage.personalAccountLinkClick();
         loginPage.loginUser(user.get(1), user.get(2)); //логин в системе
-        mainPage.waitElement(mainPage.fluoBun);
+        mainPage.waitElement(mainPage.fluBun);
         mainPage.personalAccountLinkClick();
         //Проверяем успешный вход
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
@@ -60,7 +60,7 @@ public class LoginTest {
         loginPage.registerLinkClick();
         registerPage.enterLinkClick();
         loginPage.loginUser(user.get(1), user.get(2));
-        mainPage.waitElement(mainPage.fluoBun);
+        mainPage.waitElement(mainPage.fluBun);
         mainPage.personalAccountLinkClick();
         //Проверяем успешный вход
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
@@ -72,7 +72,7 @@ public class LoginTest {
         loginPage.forgotPasswordLinkClick();
         forgotPasswordPage.enterLinkClick();
         loginPage.loginUser(user.get(1), user.get(2));
-        mainPage.waitElement(mainPage.fluoBun);
+        mainPage.waitElement(mainPage.fluBun);
         mainPage.personalAccountLinkClick();
         //Проверяем успешный вход
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));

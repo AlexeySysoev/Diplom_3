@@ -1,0 +1,43 @@
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+@RunWith(Parameterized.class)
+public class ConstructorTest {
+    private WebDriver driver;
+    MainPage mainPage = new MainPage();
+    @Before
+    public void preSettings() {
+        System.setProperty("webdriver.chrome.driver", "C:/WebDriver/bin/chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        mainPage.setDriver(driver);
+        mainPage.open();
+    }
+    @Parameterized.Parameter()
+    public int index;
+    @Parameterized.Parameter(1)
+    public String ingredientText;
+    @Parameterized.Parameters(name = "selectedTab: {0}, ingredientText: {1}")
+    public static Object [][] tabs(){
+        return new Object[][]{
+                {0, "Соус Spicy-X"},
+                {1, "Мясо бессмертных моллюсков Protostomia"},
+                {2, "Флюоресцентная булка R2-D3"}
+        };
+    }
+    @Test
+    public void tabTest(){
+        mainPage.tabClick(mainPage.ingredientsTabs[index]);
+        boolean result = mainPage.checkIngredient(mainPage.ingredients[index], ingredientText);
+        Assert.assertTrue(result);
+    }
+    @After
+    public void teardown(){
+        driver.quit();
+    }
+}
