@@ -12,7 +12,6 @@ import java.util.List;
 
 @RunWith(Parameterized.class)
 public class RegisterWrongPasswordParamTest {
-
         private WebDriver driver;
         List<String> user = new ArrayList<>();
         MainPage mainPage = new MainPage();

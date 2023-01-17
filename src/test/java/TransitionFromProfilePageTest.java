@@ -1,10 +1,10 @@
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class TransitionFromProfilePageTest {
         profilePage.setDriver(driver);
     }
     @Test
-    //Проверка перехода из ЛК к конструктору
+    //Проверка перехода из ЛК к конструктору через иконку конструктора
     public void constructorButtonClickFromProfilePageOnConstructorIsSuccess(){
         registerPage.registerUser(user);
         loginPage.loginUser(user.get(1), user.get(2));
@@ -40,7 +40,7 @@ public class TransitionFromProfilePageTest {
                                 && driver.getCurrentUrl().equals(urls.baseUrl));
     }
     @Test
-    //Проверка перехода из ЛК к конструктору
+    //Проверка перехода из ЛК к конструктору через логотип
     public void logoClickFromProfilePageOnConstructorIsSuccess(){
         registerPage.registerUser(user);
         loginPage.loginUser(user.get(1), user.get(2));
@@ -48,5 +48,9 @@ public class TransitionFromProfilePageTest {
         mainPage.logoClick();
         Assert.assertTrue(driver.findElement(mainPage.fluBun).isDisplayed()
                 && driver.getCurrentUrl().equals(urls.baseUrl));
+    }
+    @After
+    public void teardown(){
+        driver.quit();
     }
 }

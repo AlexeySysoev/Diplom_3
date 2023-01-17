@@ -31,7 +31,7 @@ public class ConstructorTest {
         };
     }
     @Test
-    public void tabTest(){
+    public void checkWorkingTabSelectors(){
         mainPage.tabClick(mainPage.ingredientsTabs[index]);
         boolean result = mainPage.checkIngredient(mainPage.ingredients[index], ingredientText);
         Assert.assertTrue(result);

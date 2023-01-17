@@ -22,10 +22,6 @@ public class MainPage {
             By.xpath(".//img[@alt='Мясо бессмертных моллюсков Protostomia']/parent::a"),
             By.xpath(".//img[@alt='Флюоресцентная булка R2-D3']/parent::a")
     };
-    final By bunTab = By.xpath(".//span[text()='Булки']/parent::div");
-    final By sauceTab = By.xpath(".//span[text()='Соусы']/parent::div");
-
-    final By fillingTab = By.xpath(".//span[text()='Начинки']/parent::div");
     final By fluBun = By.xpath(".//a[@href='/ingredient/61c0c5a71d1f82001bdaaa6d']");
     public MainPage(){}
 

@@ -34,11 +34,6 @@ public class RegisterPage {
                 .until(ExpectedConditions.elementToBeClickable(registerButton));
         driver.findElement(registerButton).click();
     }
-    public void registerButtonClick(){
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.elementToBeClickable(registerButton));
-        driver.findElement(registerButton).click();
-    }
     public void enterLinkClick(){
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.elementToBeClickable(enterLink));

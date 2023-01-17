@@ -1,4 +1,5 @@
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -6,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.ArrayList;
 import java.util.List;
-
 public class TransitionToProfilePageTest {
     private WebDriver driver;
     Urls urls = new Urls();
@@ -57,5 +57,9 @@ public class TransitionToProfilePageTest {
         mainPage.personalAccountLinkClick();
         //Проверим, что произошел переход на страницу Логина
         Assert.assertEquals(urls.baseUrl + urls.loginPoint, driver.getCurrentUrl());
+    }
+    @After
+    public void teardown(){
+        driver.quit();
     }
 }
