@@ -12,6 +12,7 @@ public class RegisterPage {
     private final String inputFields = ".//input";
     private final By invalidPasswordText = By.xpath(".//p[text()='Некорректный пароль']");
     private final By registerButton = By.xpath(".//button[text()='Зарегистрироваться']");
+    private final By enterLink = By.xpath(".//a[text()='Войти']");
     Urls urls = new Urls();
     public RegisterPage() {
     }
@@ -37,6 +38,11 @@ public class RegisterPage {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.elementToBeClickable(registerButton));
         driver.findElement(registerButton).click();
+    }
+    public void enterLinkClick(){
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.elementToBeClickable(enterLink));
+        driver.findElement(enterLink).click();
     }
     public boolean checkInvalidPasswordText(){
         boolean actual = false;

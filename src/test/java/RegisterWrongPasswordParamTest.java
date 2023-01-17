@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(Parameterized.class)
-public class RegisterWrongPasswordTest {
+public class RegisterWrongPasswordParamTest {
 
         private WebDriver driver;
         List<String> user = new ArrayList<>();
@@ -53,7 +53,7 @@ public class RegisterWrongPasswordTest {
             user.add(RandomStringUtils.randomAlphabetic(10).toLowerCase()+"@yandex.ru");
             user.add(password);
             registerPage.registerUser(user);
-            Assert.assertEquals("Empty - must be Error message!!!",result, registerPage.checkInvalidPasswordText());
+            Assert.assertEquals("Empty - must be Error message!!!", result, registerPage.checkInvalidPasswordText());
            }
         @After
         public void teardown(){

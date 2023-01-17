@@ -15,11 +15,9 @@ public class MainPage {
     private final By bunTab = By.xpath(".//span[text()='Булки']");
     private final By sauceTab = By.xpath(".//span[text()='Соусы']");
     private final By fillingTab = By.xpath(".//span[text()='Начинки']");
-
+    final By fluoBun = By.xpath(".//a[@href='/ingredient/61c0c5a71d1f82001bdaaa6d']");
     public MainPage(){}
-//    public MainPage(WebDriver driver) {
-//        this.driver = driver;
-//    }
+
     public void setDriver(WebDriver driver){
         this.driver = driver;
     }
@@ -35,5 +33,9 @@ public class MainPage {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.elementToBeClickable(enterAccountButton));
         driver.findElement(enterAccountButton).click();
+    }
+    public void waitElement(By element){
+        new WebDriverWait(driver, Duration.ofSeconds(3))
+                .until(ExpectedConditions.elementToBeClickable(element));
     }
 }

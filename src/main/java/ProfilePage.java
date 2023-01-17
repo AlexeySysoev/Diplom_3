@@ -15,7 +15,9 @@ public class ProfilePage {
         this.driver = driver;
     }
     public String getUserLogin(String login){
-       // driver.get(urls.baseUrl+urls.profilePoint);
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.urlContains(urls.profilePoint));
+        // driver.get(urls.baseUrl+urls.profilePoint);
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.elementToBeClickable(saveButton));
         WebElement elem = driver.findElement(By.xpath(".//input[@value='"+ login +"']"));
