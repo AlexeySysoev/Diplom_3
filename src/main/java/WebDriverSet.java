@@ -6,11 +6,12 @@ public class WebDriverSet {
     WebDriver driver;
     public WebDriver getWebDriver(){
         String browser = System.getProperties().getProperty("webbrowser");
-        if (browser.equals("chrome")){
+        System.out.println(browser);
+        if ((browser == null) || (browser.equals("chrome"))){
             System.setProperty("webdriver.chrome.driver", "C:/WebDriver/bin/chromedriver.exe");
             driver = new ChromeDriver();
         }
-        else if (browser.equals("yandex")){
+        else if (browser.equals("yandex")) {
             System.setProperty("webdriver.chrome.driver", "C:/WebDriver/bin/chromedriverya106.exe");
             ChromeOptions options = new ChromeOptions();
             options.setBinary("C:\\Users\\Alexoid\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe");
