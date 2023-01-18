@@ -9,13 +9,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(Parameterized.class)
 public class RegisterWrongPasswordParamTest {
         private WebDriver driver;
+        WebDriverSet selectDriver  = new WebDriverSet();
         List<String> user = new ArrayList<>();
         MainPage mainPage = new MainPage();
         RegisterPage registerPage = new RegisterPage();
@@ -23,8 +23,7 @@ public class RegisterWrongPasswordParamTest {
         ProfilePage profilePage= new ProfilePage();
         @Before
         public void preSettings(){
-            System.setProperty("webdriver.chrome.driver", "C:/WebDriver/bin/chromedriver.exe");
-            driver = new ChromeDriver();
+            driver = selectDriver.getWebDriver();
             driver.manage().window().maximize();
             mainPage.setDriver(driver);
             registerPage.setDriver(driver);

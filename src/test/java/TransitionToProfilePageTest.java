@@ -6,11 +6,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.ArrayList;
 import java.util.List;
 public class TransitionToProfilePageTest {
     private WebDriver driver;
+    WebDriverSet selectDriver  = new WebDriverSet();
     Urls urls = new Urls();
     List<String> user = new ArrayList<>();
     MainPage mainPage = new MainPage();
@@ -19,8 +19,7 @@ public class TransitionToProfilePageTest {
     ProfilePage profilePage= new ProfilePage();
     @Before
     public void preSettings() {
-        System.setProperty("webdriver.chrome.driver", "C:/WebDriver/bin/chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = selectDriver.getWebDriver();
         driver.manage().window().maximize();
         user.add("Алексей");
         user.add(RandomStringUtils.randomAlphabetic(10).toLowerCase() + "@yandex.ru");

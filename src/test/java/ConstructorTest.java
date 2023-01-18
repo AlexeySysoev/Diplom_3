@@ -7,15 +7,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 @RunWith(Parameterized.class)
 public class ConstructorTest {
     private WebDriver driver;
+    WebDriverSet selectDriver  = new WebDriverSet();
     MainPage mainPage = new MainPage();
     @Before
     public void preSettings() {
-        System.setProperty("webdriver.chrome.driver", "C:/WebDriver/bin/chromedriver.exe");
-        driver = new ChromeDriver();
+        driver = selectDriver.getWebDriver();
         driver.manage().window().maximize();
         mainPage.setDriver(driver);
         mainPage.open();
