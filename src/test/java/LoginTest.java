@@ -1,3 +1,6 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
+import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -34,25 +37,29 @@ public class LoginTest {
         registerPage.registerUser(user);
     }
     @Test
+    @DisplayName("Проверка перехода в аккаунт через кнопку 'Войти в аккаунт'")
+    @Description("проверяем логин в системе после перехода по кнопке")
     public void successLoginThroughAccountButton(){
         mainPage.open();
         mainPage.enterAccountButtonClick(); //кнопка Войти в аккаунт
         loginPage.loginUser(user.get(1), user.get(2)); //логин в системе
         mainPage.personalAccountLinkClick();
-        //Проверяем успешный вход
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
     }
     @Test
+    @DisplayName("Проверка перехода в аккаунт через кнопку 'Личный кабинет'")
+    @Description("проверяем логин в системе после перехода по кнопке")
     public void successLoginThroughPersonalAccountButton(){
         mainPage.open();
         mainPage.personalAccountLinkClick();
         loginPage.loginUser(user.get(1), user.get(2)); //логин в системе
         mainPage.waitElement(mainPage.fluBun);
         mainPage.personalAccountLinkClick();
-        //Проверяем успешный вход
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
     }
     @Test
+    @DisplayName("Проверка перехода в аккаунт через ссылку 'Войти' в форме регистрации")
+    @Description("проверяем логин в системе после перехода по ссылке")
     public void successLoginThroughEnterLinkInRegisterForm(){
         mainPage.open();
         mainPage.enterAccountButtonClick(); //кнопка Войти в аккаунт
@@ -61,10 +68,11 @@ public class LoginTest {
         loginPage.loginUser(user.get(1), user.get(2));
         mainPage.waitElement(mainPage.fluBun);
         mainPage.personalAccountLinkClick();
-        //Проверяем успешный вход
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
     }
     @Test
+    @DisplayName("Проверка перехода в аккаунт ссылку 'Войти' в форме восстановления пароля")
+    @Description("проверяем логин в системе после перехода по ссылке")
     public void successLoginThroughForgotPasswordLink(){
         mainPage.open();
         mainPage.enterAccountButtonClick(); //кнопка Войти в аккаунт
@@ -73,10 +81,11 @@ public class LoginTest {
         loginPage.loginUser(user.get(1), user.get(2));
         mainPage.waitElement(mainPage.fluBun);
         mainPage.personalAccountLinkClick();
-        //Проверяем успешный вход
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
     }
     @Test
+    @DisplayName("Проверка выхода из аккаунта через кнопку 'Выйти' в личном кабинете")
+    @Description("проверяем адрес текущей страницы после перехода")
     public void logoutFromAccountIsDone(){
         loginPage.loginUser(user.get(1), user.get(2));
         mainPage.waitElement(mainPage.personalAccountLink);

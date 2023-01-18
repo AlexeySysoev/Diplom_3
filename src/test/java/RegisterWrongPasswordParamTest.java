@@ -1,3 +1,6 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
+import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -45,8 +48,9 @@ public class RegisterWrongPasswordParamTest {
         };
     }
         @Test
-        //Проверка успешной регистрации с корректными данными
-        //Баг - сообщение об ошибке не появляется, если не вводить пароль
+        @DisplayName("Проверка сообщения об ошибке при вводе пароля менее 6 символов")
+        @Description("проверяем наличие сообщения об ошибке")
+        @Issue("Bug-001 - при пустом пароле сообщение не отображается, если не вводить пароль")
         public void enteringWrongPasswordReturnErrorMessage(){
             user.add("Алексей");
             user.add(RandomStringUtils.randomAlphabetic(10).toLowerCase()+"@yandex.ru");

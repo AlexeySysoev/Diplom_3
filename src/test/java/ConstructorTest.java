@@ -34,7 +34,7 @@ public class ConstructorTest {
     }
     @Test
     @DisplayName("Переключение табов листа ингредиентов")
-    @Description("открываем карточку ингредиента для проверки работы табов")
+    @Description("открываем карточку ингредиента его название для проверки работы табов")
     public void checkWorkingTabSelectors(){
         mainPage.tabClick(mainPage.ingredientsTabs[index]);
         boolean result = mainPage.checkIngredient(mainPage.ingredients[index], ingredientText);

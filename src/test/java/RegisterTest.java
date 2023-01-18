@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -26,12 +28,12 @@ public class RegisterTest {
         profilePage.setDriver(driver);
     }
     @Test
-    //Проверка успешной регистрации с корректными данными
+    @DisplayName("Проверка регистрации аккаунта с корректными данными")
+    @Description("проверка входа в аккаунт после регистрации, сравнение логина(почты)")
     public void checkSuccessRegisterAccount(){
         registerPage.registerUser(user);
         loginPage.loginUser(user.get(1), user.get(2));
         mainPage.personalAccountLinkClick();
-        //Проверяем содержимое инпута поля логин(почта) на странице с логином для регистрации
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
     }
     @After

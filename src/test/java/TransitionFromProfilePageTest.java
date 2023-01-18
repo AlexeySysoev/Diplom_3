@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -30,7 +32,8 @@ public class TransitionFromProfilePageTest {
         profilePage.setDriver(driver);
     }
     @Test
-    //Проверка перехода из ЛК к конструктору через иконку конструктора
+    @DisplayName("Проверка перехода из личного кабинета к конструктору через иконку конструктора")
+    @Description("проверяем адрес текущей страницы и отображение ингредиента")
     public void constructorButtonClickFromProfilePageOnConstructorIsSuccess(){
         registerPage.registerUser(user);
         loginPage.loginUser(user.get(1), user.get(2));
@@ -40,7 +43,8 @@ public class TransitionFromProfilePageTest {
                                 && driver.getCurrentUrl().equals(urls.baseUrl));
     }
     @Test
-    //Проверка перехода из ЛК к конструктору через логотип
+    @DisplayName("Проверка перехода из личного кабинета к конструктору через логотип stellar burgers")
+    @Description("проверяем адрес текущей страницы и отображение ингредиента")
     public void logoClickFromProfilePageOnConstructorIsSuccess(){
         registerPage.registerUser(user);
         loginPage.loginUser(user.get(1), user.get(2));

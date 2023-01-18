@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Assert;
@@ -29,33 +31,28 @@ public class TransitionToProfilePageTest {
         profilePage.setDriver(driver);
     }
     @Test
-    //Проверка перехода в лк с регистрацией и логином в системе
-    //Дубль теста из LoginTest
+    @DisplayName("Проверка перехода в личный кабинет с регистрацией и логином в системе/ Дубль теста из сьюта LoginTest")
+    @Description("сверяем логин юзера после входа в аккаунт")
     public void profilePageTransitionWithLogin(){
-        //создать юзера
         registerPage.registerUser(user);
-        //залогиниться
         loginPage.loginUser(user.get(1), user.get(2));
-        //перейти в лк и проверить почту
         mainPage.personalAccountLinkClick();
-        //Проверяем содержимое инпута поля логин(почта) на странице с логином для регистрации
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
     }
     @Test
-    //Проверяем переход на страницу Логина при нажатии кнопки Личный кабинет без авторизации
+    @DisplayName("Проверка перехода в личный кабинет без входа в систему")
+    @Description("ожидаем, что произошел переход на страницу входа в аккаунт")
     public void profilePageTransitionWithoutLogin(){
        registerPage.registerUser(user);
        mainPage.personalAccountLinkClick();
-       //Проверим, что произошел переход на страницу Логина
        Assert.assertTrue(driver.getCurrentUrl().equals(urls.baseUrl+urls.loginPoint));
     }
     @Test
-    //Проверяем переход на страницу Логина при нажатии кнопки Личный кабинет без создания юзера
+    @DisplayName("Проверка перехода в личный кабинет без создания аккаунта и входа в систему")
+    @Description("ожидаем, что произошел переход на страницу входа в аккаунт")
     public void profilePageTransitionWithoutCreateUser(){
-       //Попытка зайти в Личный кабинет
         mainPage.open();
         mainPage.personalAccountLinkClick();
-        //Проверим, что произошел переход на страницу Логина
         Assert.assertEquals(urls.baseUrl + urls.loginPoint, driver.getCurrentUrl());
     }
     @After

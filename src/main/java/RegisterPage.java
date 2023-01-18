@@ -3,7 +3,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 import java.util.List;
 
@@ -18,9 +17,6 @@ public class RegisterPage {
     }
     public void setDriver(WebDriver driver){
         this.driver = driver;
-    }
-    public void open(){
-        driver.get(urls.baseUrl+urls.registerPoint);
     }
     public void registerUser(List<String> user){
         driver.get(urls.baseUrl+urls.registerPoint);
