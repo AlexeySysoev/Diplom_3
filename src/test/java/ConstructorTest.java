@@ -1,3 +1,5 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -31,6 +33,8 @@ public class ConstructorTest {
         };
     }
     @Test
+    @DisplayName("Переключение табов листа ингредиентов")
+    @Description("открываем карточку ингредиента для проверки работы табов")
     public void checkWorkingTabSelectors(){
         mainPage.tabClick(mainPage.ingredientsTabs[index]);
         boolean result = mainPage.checkIngredient(mainPage.ingredients[index], ingredientText);
