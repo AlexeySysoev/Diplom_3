@@ -6,18 +6,20 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TransitionFromProfilePageTest {
     private WebDriver driver;
-    WebDriverSet selectDriver  = new WebDriverSet();
+    WebDriverSet selectDriver = new WebDriverSet();
     Urls urls = new Urls();
     List<String> user = new ArrayList<>();
     MainPage mainPage = new MainPage();
     RegisterPage registerPage = new RegisterPage();
     LoginPage loginPage = new LoginPage();
-    ProfilePage profilePage= new ProfilePage();
+    ProfilePage profilePage = new ProfilePage();
+
     @Before
     public void preSettings() {
         driver = selectDriver.getWebDriver();
@@ -30,21 +32,23 @@ public class TransitionFromProfilePageTest {
         loginPage.setDriver(driver);
         profilePage.setDriver(driver);
     }
+
     @Test
     @DisplayName("Проверка перехода из личного кабинета к конструктору через иконку конструктора")
     @Description("проверяем адрес текущей страницы и отображение ингредиента")
-    public void constructorButtonClickFromProfilePageOnConstructorIsSuccess(){
+    public void constructorButtonClickFromProfilePageOnConstructorIsSuccess() {
         registerPage.registerUser(user);
         loginPage.loginUser(user.get(1), user.get(2));
         mainPage.personalAccountLinkClick();
         mainPage.constructorButtonClick();
         Assert.assertTrue(driver.findElement(mainPage.fluBun).isDisplayed()
-                                && driver.getCurrentUrl().equals(urls.baseUrl));
+                && driver.getCurrentUrl().equals(urls.baseUrl));
     }
+
     @Test
     @DisplayName("Проверка перехода из личного кабинета к конструктору через логотип stellar burgers")
     @Description("проверяем адрес текущей страницы и отображение ингредиента")
-    public void logoClickFromProfilePageOnConstructorIsSuccess(){
+    public void logoClickFromProfilePageOnConstructorIsSuccess() {
         registerPage.registerUser(user);
         loginPage.loginUser(user.get(1), user.get(2));
         mainPage.personalAccountLinkClick();
@@ -52,8 +56,9 @@ public class TransitionFromProfilePageTest {
         Assert.assertTrue(driver.findElement(mainPage.fluBun).isDisplayed()
                 && driver.getCurrentUrl().equals(urls.baseUrl));
     }
+
     @After
-    public void teardown(){
+    public void teardown() {
         driver.quit();
     }
 }

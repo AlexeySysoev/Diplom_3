@@ -1,7 +1,9 @@
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class LoginPage {
@@ -13,11 +15,15 @@ public class LoginPage {
     private final By registerLink = By.xpath(".//a[@href = '/register']");
     private final By forgotPasswordLink = By.xpath(".//a[@href = '/forgot-password']");
 
-    public LoginPage() {}
+    public LoginPage() {
+    }
+
     public void setDriver(WebDriver driver) {
         this.driver = driver;
     }
-    public void loginUser(String email, String password){
+
+    @Step("Авторизация пользователя")
+    public void loginUser(String email, String password) {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.urlContains(urls.loginPoint));
         new WebDriverWait(driver, Duration.ofSeconds(5))
@@ -30,12 +36,16 @@ public class LoginPage {
                 .until(ExpectedConditions.elementToBeClickable(enterAccountButton));
         driver.findElement(enterAccountButton).click();
     }
-    public void registerLinkClick(){
+
+    @Step("Нажатие ссылки 'Зарегестироваться'")
+    public void registerLinkClick() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.elementToBeClickable(registerLink));
         driver.findElement(registerLink).click();
     }
-    public void forgotPasswordLinkClick(){
+
+    @Step("Нажатие ссылки 'Восстановить пароль'")
+    public void forgotPasswordLinkClick() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.urlContains(urls.loginPoint));
         new WebDriverWait(driver, Duration.ofSeconds(5))

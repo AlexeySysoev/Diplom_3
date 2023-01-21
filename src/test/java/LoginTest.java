@@ -6,25 +6,27 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class LoginTest {
     private WebDriver driver;
-    WebDriverSet selectDriver  = new WebDriverSet();
+    WebDriverSet selectDriver = new WebDriverSet();
     Urls urls = new Urls();
     List<String> user = new ArrayList<>();
     MainPage mainPage = new MainPage();
     RegisterPage registerPage = new RegisterPage();
     LoginPage loginPage = new LoginPage();
-    ProfilePage profilePage= new ProfilePage();
+    ProfilePage profilePage = new ProfilePage();
     ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
+
     @Before
-    public void preSettings(){
+    public void preSettings() {
         driver = selectDriver.getWebDriver();
         driver.manage().window().maximize();
         user.add("Алексей");
-        user.add(RandomStringUtils.randomAlphabetic(10).toLowerCase()+"@yandex.ru");
+        user.add(RandomStringUtils.randomAlphabetic(10).toLowerCase() + "@yandex.ru");
         user.add("111111");
         mainPage.setDriver(driver);
         registerPage.setDriver(driver);
@@ -34,20 +36,22 @@ public class LoginTest {
         //регистрация пользователя
         registerPage.registerUser(user);
     }
+
     @Test
     @DisplayName("Проверка перехода в аккаунт через кнопку 'Войти в аккаунт'")
     @Description("проверяем логин в системе после перехода по кнопке")
-    public void successLoginThroughAccountButton(){
+    public void successLoginThroughAccountButton() {
         mainPage.open();
         mainPage.enterAccountButtonClick(); //кнопка Войти в аккаунт
         loginPage.loginUser(user.get(1), user.get(2)); //логин в системе
         mainPage.personalAccountLinkClick();
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
     }
+
     @Test
     @DisplayName("Проверка перехода в аккаунт через кнопку 'Личный кабинет'")
     @Description("проверяем логин в системе после перехода по кнопке")
-    public void successLoginThroughPersonalAccountButton(){
+    public void successLoginThroughPersonalAccountButton() {
         mainPage.open();
         mainPage.personalAccountLinkClick();
         loginPage.loginUser(user.get(1), user.get(2)); //логин в системе
@@ -55,10 +59,11 @@ public class LoginTest {
         mainPage.personalAccountLinkClick();
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
     }
+
     @Test
     @DisplayName("Проверка перехода в аккаунт через ссылку 'Войти' в форме регистрации")
     @Description("проверяем логин в системе после перехода по ссылке")
-    public void successLoginThroughEnterLinkInRegisterForm(){
+    public void successLoginThroughEnterLinkInRegisterForm() {
         mainPage.open();
         mainPage.enterAccountButtonClick(); //кнопка Войти в аккаунт
         loginPage.registerLinkClick();
@@ -68,10 +73,11 @@ public class LoginTest {
         mainPage.personalAccountLinkClick();
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
     }
+
     @Test
     @DisplayName("Проверка перехода в аккаунт ссылку 'Войти' в форме восстановления пароля")
     @Description("проверяем логин в системе после перехода по ссылке")
-    public void successLoginThroughForgotPasswordLink(){
+    public void successLoginThroughForgotPasswordLink() {
         mainPage.open();
         mainPage.enterAccountButtonClick(); //кнопка Войти в аккаунт
         loginPage.forgotPasswordLinkClick();
@@ -81,19 +87,21 @@ public class LoginTest {
         mainPage.personalAccountLinkClick();
         Assert.assertEquals(user.get(1), profilePage.getUserLogin(user.get(1)));
     }
+
     @Test
     @DisplayName("Проверка выхода из аккаунта через кнопку 'Выйти' в личном кабинете")
     @Description("проверяем адрес текущей страницы после перехода")
-    public void logoutFromAccountIsDone(){
+    public void logoutFromAccountIsDone() {
         loginPage.loginUser(user.get(1), user.get(2));
         mainPage.waitElement(mainPage.personalAccountLink);
         mainPage.personalAccountLinkClick();
         profilePage.logoutButtonClick();
         mainPage.personalAccountLinkClick();
-        Assert.assertEquals(urls.baseUrl+urls.loginPoint, driver.getCurrentUrl());
+        Assert.assertEquals(urls.baseUrl + urls.loginPoint, driver.getCurrentUrl());
     }
+
     @After
-    public void teardown(){
+    public void teardown() {
         driver.quit();
     }
 }
