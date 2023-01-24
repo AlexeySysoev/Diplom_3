@@ -14,7 +14,7 @@ public class RegisterPage {
     private final By invalidPasswordText = By.xpath(".//p[text()='Некорректный пароль']");
     private final By registerButton = By.xpath(".//button[text()='Зарегистрироваться']");
     private final By enterLink = By.xpath(".//a[text()='Войти']");
-    Urls urls = new Urls();
+    private Urls urls = new Urls();
 
     public RegisterPage() {
     }

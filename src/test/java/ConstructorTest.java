@@ -11,8 +11,8 @@ import org.openqa.selenium.WebDriver;
 @RunWith(Parameterized.class)
 public class ConstructorTest {
     private WebDriver driver;
-    WebDriverSet selectDriver = new WebDriverSet();
-    MainPage mainPage = new MainPage();
+    private WebDriverSet selectDriver = new WebDriverSet();
+    private MainPage mainPage = new MainPage();
 
     @Before
     public void preSettings() {

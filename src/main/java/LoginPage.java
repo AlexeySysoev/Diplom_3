@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class LoginPage {
     private WebDriver driver;
-    Urls urls = new Urls();
+    private Urls urls = new Urls();
     private final By emailInput = By.xpath(".//input[@name='name']");
     private final By passwordInput = By.xpath(".//input[@name='Пароль']");
     private final By enterAccountButton = By.xpath(".//button[text()='Войти']");

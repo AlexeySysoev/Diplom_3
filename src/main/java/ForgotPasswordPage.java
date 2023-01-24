@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class ForgotPasswordPage {
     private WebDriver driver;
-    Urls urls = new Urls();
+    private Urls urls = new Urls();
     private final By enterLink = By.xpath(".//a[text()='Войти']");
 
     public void setDriver(WebDriver driver) {

@@ -16,12 +16,12 @@ import java.util.List;
 @RunWith(Parameterized.class)
 public class RegisterWrongPasswordParamTest {
     private WebDriver driver;
-    WebDriverSet selectDriver = new WebDriverSet();
-    List<String> user = new ArrayList<>();
-    MainPage mainPage = new MainPage();
-    RegisterPage registerPage = new RegisterPage();
-    LoginPage loginPage = new LoginPage();
-    ProfilePage profilePage = new ProfilePage();
+    private WebDriverSet selectDriver = new WebDriverSet();
+    private List<String> user = new ArrayList<>();
+    private MainPage mainPage = new MainPage();
+    private RegisterPage registerPage = new RegisterPage();
+    private LoginPage loginPage = new LoginPage();
+    private ProfilePage profilePage = new ProfilePage();
 
     @Before
     public void preSettings() {

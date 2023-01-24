@@ -9,7 +9,7 @@ import java.time.Duration;
 
 public class ProfilePage {
     private WebDriver driver;
-    Urls urls = new Urls();
+    private Urls urls = new Urls();
     private final By saveButton = By.xpath(".//button[text()='Сохранить']");
     private final By logoutButton = By.xpath(".//button[text()='Выход']");
 

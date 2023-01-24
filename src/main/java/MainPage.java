@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class MainPage {
     private WebDriver driver;
-    Urls urls = new Urls();
+    private Urls urls = new Urls();
     final By personalAccountLink = By.xpath(".//a[@href = '/account']");
     private final By enterAccountButton = By.xpath(".//button[text()='Войти в аккаунт']");
     private final By mainLogo = By.xpath(".//div[contains(@class, 'logo')]/a[@href='/']");

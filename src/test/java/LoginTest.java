@@ -12,14 +12,14 @@ import java.util.List;
 
 public class LoginTest {
     private WebDriver driver;
-    WebDriverSet selectDriver = new WebDriverSet();
-    Urls urls = new Urls();
-    List<String> user = new ArrayList<>();
-    MainPage mainPage = new MainPage();
-    RegisterPage registerPage = new RegisterPage();
-    LoginPage loginPage = new LoginPage();
-    ProfilePage profilePage = new ProfilePage();
-    ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
+    private WebDriverSet selectDriver = new WebDriverSet();
+    private Urls urls = new Urls();
+    private List<String> user = new ArrayList<>();
+    private MainPage mainPage = new MainPage();
+    private RegisterPage registerPage = new RegisterPage();
+    private LoginPage loginPage = new LoginPage();
+    private ProfilePage profilePage = new ProfilePage();
+    private ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
 
     @Before
     public void preSettings() {
