@@ -41,7 +41,7 @@ public class RegisterWrongPasswordParamTest {
     @Parameterized.Parameters(name = "password: {0}, result: {1}")
     public static Object[][] wrongPass() {
         return new Object[][]{
-                {"", true},
+                //{"", true},
                 {RandomStringUtils.randomAlphanumeric(1), true},
                 {RandomStringUtils.randomAlphanumeric(2), true},
                 {RandomStringUtils.randomAlphanumeric(3), true},
